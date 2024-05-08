@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Articles</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <style>
+        * {
+            font-size: 25px;
+            padding: 15px 25px 10px 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div th:switch="${articles}">
+    <h2 th:case="null">No articles found!</h2>
+    <div th:case="*">
+        <h1>Articles</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Image</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>Category</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="article : ${articles}">
+                <td>
+                    <img th:src="@{'/images/' + ${article.previewImageId}}" th:alt="${article.title}"/>
+                </td>
+                <td th:text="${article.id}"></td>
+                <td th:text="${article.title}"></td>
+                <td th:text="${article.subtitle}"></td>
+                <td th:text="${article.category != null ? article.category.name : 'N/A'}"></td>
+                <td><a th:href="@{article-update/{id}(id=${article.id})}">Edit</a></td>
+                <td><a th:href="@{article-delete/{id}(id=${article.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/article-create">Create article</a></p>
+</div>
+</body>
+</html>

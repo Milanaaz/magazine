@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>News</title>
+  <link href="/css/styles.css" rel="stylesheet">
+  <style>
+        * {
+            font-size: 25px;
+            padding: 15px 25px 10px 25px;
+            }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div th:switch="${news}">
+  <h2 th:case="null">No news found!</h2>
+  <div th:case="*">
+    <h1>News</h1>
+    <table>
+      <thead>
+      <tr>
+        <th>Image</th>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="news : ${news}">
+        <td>
+          <img th:src="@{'/images/' + ${news.previewImageId}}" th:alt="${news.title}"/>
+        </td>
+        <td th:text="${news.id}"></td>
+        <td th:text="${news.title}"></td>
+        <td th:text="${news.date}"></td>
+        <td><a th:href="@{news-update/{id}(id=${news.id})}">Edit</a></td>
+        <td><a th:href="@{news-delete/{id}(id=${news.id})}">Delete</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><a href="/admin/news-create">Create news</a></p>
+</div>
+</body>
+</html>

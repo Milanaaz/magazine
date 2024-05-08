@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <style>
+        * {
+            font-size: 25px;
+            padding: 15px 25px 10px 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+<body>
+<h2>Categories</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category : ${category}">
+        <td th:text="${category.id}"></td>
+        <td th:text="${category.name}"></td>
+        <td><a th:href="@{/category/{id}(id=${category.id})}">Go to Category</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

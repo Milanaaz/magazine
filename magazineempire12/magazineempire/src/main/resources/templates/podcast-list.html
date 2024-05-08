@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Podcast</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <style>
+        * {
+            font-size: 25px;
+            padding: 15px 25px 10px 25px;
+            }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div th:switch="${podcast}">
+    <h2 th:case="null">No podcast found!</h2>
+    <div th:case="*">
+        <h1>Podcast</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Image</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Album Id</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="podcast : ${podcast}">
+                <td>
+                    <img th:src="@{'/images/' + ${podcast.previewImageId}}" th:alt="${podcast.title}"/>
+                </td>
+                <td th:text="${podcast.id}"></td>
+                <td th:text="${podcast.title}"></td>
+                <td><a th:href="@{'https://music.yandex.ru/album/' + ${podcast.albumId}}">View Podcast</a></td>
+                <td><a th:href="@{podcast-update/{id}(id=${podcast.id})}">Edit</a></td>
+                <td><a th:href="@{podcast-delete/{id}(id=${podcast.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/admin/podcast-create">Create podcast</a></p>
+</div>
+</body>
+</html>

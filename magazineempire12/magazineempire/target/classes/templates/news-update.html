@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update the news</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <style>
+        body {
+            font-size: 25px;
+            padding: 15px 25px 10px 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+        }
+
+        input[type="file"] {
+            margin-top: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body>
+<h2>Update the news</h2>
+
+<form action="#" th:action="@{/admin/news-update}" th:object="${news}" method="POST" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id}">
+    <p>
+        <label for="title">Title:</label>
+        <input type="text" id="title" th:field="*{title}">
+    </p>
+    <p>
+        <label for="date" style="width: auto;">Date:</label>
+        <input type="text" id="date" th:field="*{date}">
+    </p>
+    <p>
+        <label for="text">Text:</label>
+        <textarea name="text" th:field="*{text}" id="text"></textarea>
+    </p>
+    <p>
+        <label for="files">Images:</label>
+        <input type="file" id="files" name="files" multiple>
+    </p>
+    <p>
+        <button type="submit">Save changes</button>
+    </p>
+</form>
+
+<h3>Current Images</h3>
+
+<div th:if="${news.images.size() > 0}">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Preview</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="image : ${news.images}">
+            <td th:text="${image.originalFileName}"></td>
+            <td><img th:src="@{'/images/' + ${image.id}}" alt="Preview"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:if="${news.images.size() == 0}">
+    <p>No images uploaded.</p>
+</div>
+
+<p><a href="/admin/news">Back to News</a></p>
+
+</body>
+</html>

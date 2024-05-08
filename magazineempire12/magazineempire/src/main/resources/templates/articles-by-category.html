@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Articles by category</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <style>
+        * {
+            font-size: 25px;
+            padding: 15px 25px 10px 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+</head>
+<body>
+<div th:switch="${articles}">
+    <h2 th:case="null">No articles found for this category!</h2>
+    <div th:case="*">
+        <h2>Articles by Category: <span th:text="${category.name}"></span></h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Image</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Subtitle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="article : ${articles}">
+                <td>
+                    <img th:src="@{'/images/' + ${article.previewImageId}}" th:alt="${article.title}" height="50px"/>
+                </td>
+                <td th:text="${article.id}"></td>
+                <td th:text="${article.title}"></td>
+                <td th:text="${article.subtitle}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<p><a href="/articles">Back to Articles</a></p>
+</body>
+</html>

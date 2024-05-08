@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>News details</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <style>
+        * {
+            padding: 15px 25px 10px 25px;
+        }
+        body {
+        font-size: 25px;
+        }
+        h2 {
+            margin-bottom: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .news-text {
+            white-space: pre-wrap;
+        }
+
+        img {
+            max-width: 150px;
+        }
+    </style>
+</head>
+<body>
+<h2>News</h2>
+<table>
+    <tr>
+        <td>Id:</td>
+        <td th:text="${news.id}"></td>
+    </tr>
+    <tr>
+        <td>Title:</td>
+        <td th:text="${news.title}"></td>
+    </tr>
+    <tr>
+        <td>Date:</td>
+        <td th:text="${news.date}"></td>
+    </tr>
+    <tr>
+        <td>Text:</td>
+        <td><span class="news-text" th:text="${news.text}"></span></td>
+    </tr>
+    <tr>
+        <td>Images:</td>
+    </tr>
+    <tr th:each="image : ${news.images}">
+        <td><img th:src="@{'/images/' + ${image.id}}" alt="Preview" /></td>
+    </tr>
+</table>
+</body>
+</html>

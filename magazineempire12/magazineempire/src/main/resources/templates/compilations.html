@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>COMPILATIONS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bellota+Text&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <a href="/" class="logo"><b>EMPIRE</b></a>
+    <div class="group1">
+        <ul class="nav">
+            <li><a href="/">Sections <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown_menu">
+                    <ul class="fordropmenu">
+                        <li><a href="/section/1">Ballet</a></li>
+                        <li><a href="/section/2">Music</a></li>
+                        <li><a href="/section/3">Literature</a></li>
+                        <li><a href="/section/4">Theater</a></li>
+                        <li><a href="/section/5">Cinematography</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/podcasts">Podcasts</a></li>
+            <li><a href="compilations.html">Compilations</a></li>
+            <li><a href="store.html">Store</a></li>
+        </ul>
+        <div class="search">
+          <span class="icon1">
+            <ion-icon name="search-outline" class="searchBtn"></ion-icon>
+            <ion-icon name="close-outline" class="closeBtn"></ion-icon>
+          </span>
+            <span class="icon2 mailIcon">
+            <ion-icon name="mail-outline"></ion-icon>
+          </span>
+            <span class="icon2 personIcon">
+            <ion-icon name="person-outline"></ion-icon>
+          </span>
+        </div>
+    </div>
+    <div class="searchBox">
+        <form action="/search" method="GET" id="searchForm">
+            <input type="text" name="searchTerm" placeholder="what do you want to find?" id="searchInput">
+        </form>
+    </div>
+</header>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+    let searchBtn = document.querySelector('.searchBtn');
+    let closeBtn = document.querySelector('.closeBtn');
+    let searchBox = document.querySelector('.searchBox');
+    let mailIcon = document.querySelector('.mailIcon');
+    let personIcon = document.querySelector('.personIcon');
+    let searchIcons = document.querySelectorAll('.icon2');
+
+    searchBtn.addEventListener('click', function(){
+       searchBox.classList.add('active');
+       closeBtn.style.display = 'inline-block';
+       searchIcons.forEach(function(icon) {
+         icon.style.display = 'none';
+       });
+    });
+
+    closeBtn.addEventListener('click', function(){
+       searchBox.classList.remove('active');
+       closeBtn.style.display = 'none';
+       searchIcons.forEach(function(icon) {
+         icon.style.display = 'inline-block';
+       });
+    });
+  </script>
+<style>
+    .hidden {
+      display: none;
+    }
+  </style>
+<div class="comp1">
+    <h1>
+        compilations
+    </h1>
+    <img src="line2.png">
+</div>
+<div class="=comp2">
+    <div class="co-box1">
+        <p id="paragraph">Indie cinema at the Oscars. Precedent<br> Films that have Changed American<br> Cinema</p>
+        <img id="picture" src="comp104.jpg">
+        <h4 id="date" >Сinematography</h4>
+    </div>
+</div>
+<div class="footerforcomp">
+    <div class="news3">
+        <h1>EMPIRE</h1>
+        <ion-icon name="logo-facebook"></ion-icon>
+        <ion-icon name="logo-twitter"></ion-icon>
+        <ion-icon name="logo-instagram"></ion-icon>
+    </div>
+    <div class="news4"></div>
+    <h2>About our project <br>
+        <ion-icon name="mail-open-outline"></ion-icon>     Email: empire@gmail.com<br>
+        <ion-icon name="location-outline"></ion-icon>     Address: Kyrgyzstan, Bishkek, empire street, 12B<br>
+        <ion-icon name="call-outline"></ion-icon>     Contacts: +996 773 062 755
+    </h2>
+</div>
+</div>
+
+</body>
+</html>

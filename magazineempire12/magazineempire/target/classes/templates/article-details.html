@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Article details</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <style>
+        * {
+            padding: 15px 25px 10px 25px;
+        }
+        body {
+            font-size: 25px;
+        }
+        h2 {
+            margin-bottom: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .text {
+            white-space: pre-wrap;
+        }
+
+        img {
+            max-width: 150px;
+        }
+    </style>
+</head>
+<body>
+<h2>Article</h2>
+<h2>Selected Category: <span th:text="${article.category.name}"></span></h2>
+<table>
+    <tr>
+        <td>Id:</td>
+        <td th:text="${article.id}"></td>
+    </tr>
+    <tr>
+        <td>Title:</td>
+        <td th:text="${article.title}"></td>
+    </tr>
+    <tr>
+        <td>Subtitle:</td>
+        <td th:text="${article.subtitle}"></td>
+    </tr>
+    <tr>
+        <td>Text:</td>
+        <td><span class="news-text" th:text="${article.text}"></span></td>
+    </tr>
+    <tr>
+        <td>Images:</td>
+    </tr>
+    <tr th:each="image : ${article.images}">
+        <td><img th:src="@{'/images/' + ${image.id}}" alt="Preview" /></td>
+    </tr>
+</table>
+</body>
+</html>

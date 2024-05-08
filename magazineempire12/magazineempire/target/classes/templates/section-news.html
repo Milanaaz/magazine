@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>News</title>
+  <link th:href="@{/css/styles.css}" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bellota+Text&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+  <style>
+
+    .hidden {
+      display: none;
+    }
+
+    .news23 {
+      margin-top: 130px;
+      margin-left: 100px;
+      color: rgba(20, 18, 21, 0.79);
+    }
+
+    .news23 h2 {
+      font-size: 40px;
+      font-weight: 400;
+    }
+
+    .news23 h1 {
+      font-size: 60px;
+      font-weight: normal;
+      margin-top: 20px;
+    }
+
+    .news23 h3 {
+      font-size: 30px;
+      font-weight: normal;
+      margin-top: 20px;
+      color: grey;
+    }
+    .news24 {
+      text-align: center;
+      }
+    .news24 img {
+      margin-top: 5px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 600px;
+      height: 400px;
+    }
+
+    .news24 .text {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 400;
+      padding: 200px; 200px; 500px; 200px;
+    }
+    .co-box1 {
+      position: absolute;
+      width: 100%;
+      height: 635px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: rgba(190, 199, 208, 0.15);
+}
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><b>EMPIRE</b></a>
+  <div class="group1">
+    <ul class="nav">
+      <li><a href="quiz.html">Sections <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown_menu">
+          <ul class="fordropmenu">
+            <li><a href="/section/1">Ballet</a></li>
+            <li><a href="/section/2">Music</a></li>
+            <li><a href="/section/3">Literature</a></li>
+            <li><a href="/section/4">Theater</a></li>
+            <li><a href="/section/5">Cinematography</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a href="/news">News</a></li>
+      <li><a href="/podcasts">Podcasts</a></li>
+      <li><a href="compilations.html">Compilations</a></li>
+      <li><a href="store.html">Store</a></li>
+    </ul>
+    <div class="search">
+          <span class="icon1">
+            <ion-icon name="search-outline" class="searchBtn"></ion-icon>
+            <ion-icon name="close-outline" class="closeBtn"></ion-icon>
+          </span>
+      <span class="icon2 mailIcon">
+            <ion-icon name="mail-outline"></ion-icon>
+          </span>
+      <span class="icon2 personIcon">
+            <ion-icon name="person-outline"></ion-icon>
+          </span>
+    </div>
+  </div>
+  <div class="searchBox">
+    <input type="text" placeholder="поиск">
+  </div>
+</header>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<div class="news23">
+  <h2>News</h2>
+  <h1><span th:text="${news.title}"></span></h1>
+  <h3><span th:text="${news.date}"></span></h3>
+</div>
+
+<div class="news24">
+  <tr th:each="image : ${news.images}">
+    <td class="news23"><img th:src="@{'/images/' + ${image.id}}" width="700"></td>
+  </tr>
+  <p><span class="text" th:text="${news.text}"></span></p>
+</div>
+
+
+</body>
+</html>
+
